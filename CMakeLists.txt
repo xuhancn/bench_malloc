@@ -4,6 +4,8 @@ set(PROJ_NAME "bench_malloc")
 project (${PROJ_NAME})
 
 set(PROJECT_ROOT_DIR ${PROJECT_SOURCE_DIR})
+set(LIBRARY_OUTPUT_PATH ${PROJECT_ROOT_DIR}/lib)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_ROOT_DIR}/bin)
 
 set(SOURCES_FILES)
 add_subdirectory(${PROJECT_ROOT_DIR}/src)
