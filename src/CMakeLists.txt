@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+
+file(GLOB _SRC *.cpp *.h)
+LIST(APPEND SOURCES_FILES ${_SRC})
+
+set(SOURCES_FILES ${SOURCES_FILES} PARENT_SCOPE)
