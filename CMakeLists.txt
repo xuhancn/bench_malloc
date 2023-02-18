@@ -8,4 +8,8 @@ set(PROJECT_ROOT_DIR ${PROJECT_SOURCE_DIR})
 set(SOURCES_FILES)
 add_subdirectory(${PROJECT_ROOT_DIR}/src)
 
+# built-in malloc
 add_executable(${PROJ_NAME} ${SOURCES_FILES})
+
+# tcmalloc
+add_subdirectory(${PROJECT_ROOT_DIR}/bench_tcmalloc)
