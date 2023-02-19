@@ -55,7 +55,7 @@ void bench_malloc_and_access_func()
 Windows built-in malloc consumer a lot of time during this benchmark.
 
 ## Build from source
-#### Get the Source Code
+### Get the Source Code
 ```bash
 git clone --recursive https://github.com/xuhancn/bench_malloc
 cd bench_malloc
