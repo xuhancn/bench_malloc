@@ -81,5 +81,5 @@ make
 
 Need run command in [Visual Studio Developer Command Prompt](https://learn.microsoft.com/en-us/visualstudio/ide/reference/command-prompt-powershell?view=vs-2022)
 ```bash
-msbuild bench_malloc.sln
+msbuild bench_malloc.sln /property:Configuration=Release
 ```
