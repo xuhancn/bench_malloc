@@ -1,6 +1,7 @@
 #include <chrono>
 #include <stdio.h>
 #include <stdlib.h>     /* malloc, calloc, realloc, free */
+#include <string.h>
 
 #define COUNT 1000*1000
 
@@ -47,3 +48,4 @@ int main()
 
   return 0;
 }
+
