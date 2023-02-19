@@ -1,5 +1,9 @@
 # Benchmark for Malloc
 
+This project shows the performance comparsion between system built-in malloc and [tcmalloc](https://github.com/gperftools/gperftools).
+
+Besides that, it is also shows a example to integrated tcmalloc via CMake build system.
+
 ## Bench malloc result
 
 Hardward environment:
