@@ -20,6 +20,32 @@ Compiler: gcc version 9.4.0
 * Note: Windows and Linux is due boot in the same SATA disk.
 ```
 
+Benchmark code:
+```c++
+#define COUNT 1000*1000
+
+void bench_malloc_func()
+{
+	for (size_t i = 0; i < COUNT; ++i)
+	{
+		int malloc_size = i * sizeof(int);
+		int * pInt = (int*)malloc(malloc_size);
+		free(pInt);
+	}
+}
+
+void bench_malloc_and_access_func()
+{
+	for (size_t i = 0; i < COUNT; ++i)
+	{
+		int malloc_size = i * sizeof(int);
+		int * pInt = (int*)malloc(malloc_size);
+
+		memset(pInt, 0, malloc_size);
+		free(pInt);
+	}
+}
+```
 <img src="images/benchmark.png" width="800px">
 
 Windows built-in malloc consumer a lot of time during this benchmark.
@@ -42,12 +68,14 @@ cmake ..
 ```
 
 ### Build project
-** On Linux **
+**On Linux**
 ```bash
 make
 ```
 
-** On Windows **
+**On Windows**
+
+Need run command in [Visual Studio Developer Command Prompt](https://learn.microsoft.com/en-us/visualstudio/ide/reference/command-prompt-powershell?view=vs-2022)
 ```bash
 msbuild bench_malloc.sln
 ```
