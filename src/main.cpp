@@ -1,5 +1,6 @@
 #include <chrono>
 #include <stdio.h>
+#include <stdlib.h>     /* malloc, calloc, realloc, free */
 
 #define COUNT 1000*1000
 
@@ -35,14 +36,14 @@ int main()
   high_resolution_clock::time_point time_end = high_resolution_clock::now();
   duration<double> time_span = duration_cast<duration<double>>(time_end - time_begin);
 
-  printf_s("bench malloc duration time: %lfs.\n", time_span.count());
+  printf("bench malloc duration time: %lfs.\n", time_span.count());
 
   time_begin = high_resolution_clock::now();
   bench_malloc_and_access_func();
   time_end = high_resolution_clock::now();
   time_span = duration_cast<duration<double>>(time_end - time_begin);
 
-  printf_s("bench malloc and access duration time: %lfs.\n", time_span.count());
+  printf("bench malloc and access duration time: %lfs.\n", time_span.count());
 
   return 0;
 }
