@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
 set(BENCH_TCMALLOC_PROJECT ${PROJ_NAME}_tcmalloc)
 
+project(${BENCH_TCMALLOC_PROJECT})
+
 option(BUILD_TESTING OFF)
 add_subdirectory(${PROJECT_ROOT_DIR}/third_party/tcmalloc ${BENCH_TCMALLOC_PROJECT}/tcmalloc)
 
@@ -15,7 +17,7 @@ set(TCMALLOC_LIB_PATH
 )
 link_directories(${TCMALLOC_LIB_PATH})
 
-add_executable(${BENCH_TCMALLOC_PROJECT} ${SOURCES_FILES})
+add_executable(${BENCH_TCMALLOC_PROJECT} ${SOURCES_FILES} ${PROJECT_ROOT_DIR}/third_party/tcmalloc)
 
 set_target_properties(${BENCH_TCMALLOC_PROJECT} PROPERTIES LINK_FLAGS /INCLUDE:"__tcmalloc")
 target_link_libraries(${BENCH_TCMALLOC_PROJECT} PRIVATE "logging.lib")
