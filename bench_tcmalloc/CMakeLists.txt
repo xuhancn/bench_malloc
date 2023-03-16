@@ -5,8 +5,9 @@ set(BENCH_TCMALLOC_PROJECT ${PROJ_NAME}_tcmalloc)
 project(${BENCH_TCMALLOC_PROJECT})
 
 # disable tcmalloc build testing
+set(tc_malloc_dir ${PROJECT_ROOT_DIR}/third_party/tcmalloc)
 option(BUILD_TESTING OFF)
-add_subdirectory(${PROJECT_ROOT_DIR}/third_party/tcmalloc ${BENCH_TCMALLOC_PROJECT}/tcmalloc)
+add_subdirectory(${tc_malloc_dir} ${BENCH_TCMALLOC_PROJECT}/tcmalloc)
 
 if(MSVC)
     set(TCMALLOC_LIB_PATH
@@ -20,9 +21,9 @@ if(MSVC)
     link_directories(${TCMALLOC_LIB_PATH})
 endif()
 
-add_executable(${BENCH_TCMALLOC_PROJECT} ${SOURCES_FILES})
-
 if(MSVC)
+    add_executable(${BENCH_TCMALLOC_PROJECT} ${SOURCES_FILES})
+
     # https://github.com/gperftools/gperftools/blob/master/README_windows.txt#L34 
     set_target_properties(${BENCH_TCMALLOC_PROJECT} PROPERTIES LINK_FLAGS /INCLUDE:"__tcmalloc")
     target_link_libraries(${BENCH_TCMALLOC_PROJECT} PRIVATE "tcmalloc_minimal_static.lib")
@@ -31,6 +32,8 @@ if(MSVC)
     target_link_libraries(${BENCH_TCMALLOC_PROJECT} PRIVATE "sysinfo.lib")
     add_dependencies(${BENCH_TCMALLOC_PROJECT} tcmalloc_minimal_static)
 else()
+    add_executable(${BENCH_TCMALLOC_PROJECT} ${SOURCES_FILES} ${tc_malloc_dir})
+
     # https://github.com/gperftools/gperftools/blob/master/README#L26
     target_link_libraries(${BENCH_TCMALLOC_PROJECT} ${LIBRARY_OUTPUT_PATH}/libtcmalloc_minimal.a)
 endif()
