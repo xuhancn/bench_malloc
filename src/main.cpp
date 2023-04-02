@@ -36,15 +36,17 @@ int main()
   bench_malloc_func();
   high_resolution_clock::time_point time_end = high_resolution_clock::now();
   duration<double> time_span = duration_cast<duration<double>>(time_end - time_begin);
+  double time_span_avg = time_span.count() * 1000 / (COUNT);
 
-  printf("bench malloc duration time: %lfs.\n", time_span.count());
+  printf("bench malloc duration time: %lfs, avg: %lfms.\n", time_span.count(), time_span_avg);
 
   time_begin = high_resolution_clock::now();
   bench_malloc_and_access_func();
   time_end = high_resolution_clock::now();
   time_span = duration_cast<duration<double>>(time_end - time_begin);
+  time_span_avg = time_span.count() * 1000 / (COUNT);
 
-  printf("bench malloc and access duration time: %lfs.\n", time_span.count());
+  printf("bench malloc and access duration time: %lfs, avg: %lfms.\n", time_span.count(), time_span_avg);
 
   return 0;
 }
